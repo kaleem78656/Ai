@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(Ai1-kopi.webp);
+  }
+  
+  .container {
+    background-color: #fff;
+    width: 90%;
+    max-width: 800px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .chat-log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    background-color: #fafafa;
+  }
+  
+  .chat-entry {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  .chat-entry.user {
+    text-align: right;
+    color: #0366d6;
+    font-weight: 600;
+  }
+  
+  .chat-entry.bot {
+    text-align: left;
+    color: #333;
+  }
+  
+  .input-area {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text-input {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  button.search,
+  button.talk {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  button.search {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  button.search:hover {
+    background-color: #218838;
+  }
+  
+  button.talk {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button.talk:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Ny seksjon nederst */
+  .info-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .info-links a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .info-links a:hover {
+    color: #0056b3;
+  }
+  

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logg inn</title>
+  <!-- Kobler til en ekstern CSS-fil for å style siden -->
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <nav>
+        <!-- Navigasjonslenker til siden for å melde feil og til adminpanelet -->
+ 
+        <a href="registrer.html">registrering</a>
+        <a href="login.html">Logg in</a>
+    </nav>
+ 
+  <!-- Overskrift for innloggingssiden -->
+  <h2>Logg inn</h2>
+ 
+  <!-- Skjema for å logge inn -->
+  <form>
+    <!-- Input-felt for e-post -->
+    <input type="email" id="email" placeholder="E-post" required>
+    <br><br>
+ 
+    <!-- Input-felt for passord -->
+    <input type="password" id="password" placeholder="Passord" required>
+    <br><br>
+ 
+    <!-- Knapp for å sende innloggingsinformasjonen -->
+    <button id="submit">Logg inn</button>
+  </form>
+ 
+  <!-- Lenke til registreringssiden for brukere som ikke har konto -->
+  <p>Har du ikke konto? <a href="registrer.html">Registrer deg her</a></p>
+ 
+  <!-- Laster inn JavaScript-kode som håndterer innloggingen -->
+  <script type="module" src="login.js"></script>
+
+ 
+</body>
+</html

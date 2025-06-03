@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registrer deg</title>
+<!-- Kobler til en ekstern CSS-fil for å style siden -->
+  <link rel="stylesheet" href="login.css">
+</head>
+ 
+<body>
+    <nav>
+        <!-- Navigasjonslenker til siden for å melde feil og til adminpanelet -->
+        
+         <a href="registrer.html">registrering</a>
+        <a href="login.html">Logg in</a>
+        
+        
+        
+    </nav>
+ 
+    <!-- Tittel/overskrift som vises øverst på siden -->
+    <h2>Registrer deg</h2>
+    
+    <!-- Skjema der brukeren kan skrive inn e-post og passord for å lage en ny konto -->
+    <form>
+    
+        <!-- Inntastingsfelt for e-postadresse -->
+        <input type="email" id="email" placeholder="E-post" required>
+        <br><br>
+    
+        <!-- Inntastingsfelt for passord -->
+        <input type="password" id="password" placeholder="Passord" required>
+        <br><br>
+    
+        <!-- Knapp som brukeren trykker på for å sende inn skjemaet -->
+        <button id="submit">Opprett konto</button>
+    </form>
+    
+    <!-- Tekst med lenke hvis brukeren allerede har en konto og vil logge inn i stedet -->
+    <p>Har du allerede konto? <a href="login.html">Logg inn her</a></p>
+
+    
+    <!-- Kobler til JavaScript-filen som inneholder koden som håndterer registrering -->
+    <script type="module" src="registrer.js"></script>
+ 
+</body>
+</html>
+ 
