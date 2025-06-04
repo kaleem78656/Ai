@@ -91,45 +91,52 @@ const predefinedAnswers = {
 };
 
 // === Funksjoner ===
+
+// Gjør teksten liten (små bokstaver) og fjerner mellomrom i starten/slutten
 function normalize(text) {
   return text.toLowerCase().trim();
 }
 
+// Finner et svar basert på det brukeren sa (sjekker om det finnes i predefinedAnswers)
 function findAnswer(transcript) {
-  const normalized = normalize(transcript);
+  const normalized = normalize(transcript); // Gjør om brukerens tale til små bokstaver
   return Object.keys(predefinedAnswers).find(key =>
-    normalized.includes(key)
+    normalized.includes(key) // Sjekker om noen nøkkelord finnes i det brukeren sa
   );
 }
 
+// Legger til en melding i chatteloggen (enten fra bruker eller bot)
 function addToChat(role, text) {
-  const div = document.createElement('div');
-  div.classList.add('chat-entry', role);
-  div.textContent = text;
-  chatLog.appendChild(div);
-  chatLog.scrollTop = chatLog.scrollHeight; // scroll til bunn
+  const div = document.createElement('div'); // Lager en ny <div>
+  div.classList.add('chat-entry', role);     // Gir den en klasse ("user" eller "bot")
+  div.textContent = text;                    // Legger inn teksten
+  chatLog.appendChild(div);                  // Viser den i chatten
+  chatLog.scrollTop = chatLog.scrollHeight;  // Ruller automatisk til bunnen
 }
 
+// Hovedfunksjonen som håndterer det brukeren spør om
 function handleQuery(text) {
-  const userInput = text.trim();
-  if (!userInput) return;
+  const userInput = text.trim();     // Fjerner mellomrom
+  if (!userInput) return;            // Hvis det ikke er noe tekst, stopp
 
-  addToChat('user', userInput);
-  const match = findAnswer(userInput);
+  addToChat('user', userInput);      // Vis hva brukeren skrev i chatten
+  const match = findAnswer(userInput); // Sjekk om vi har et svar klart
 
   if (match) {
-    const reply = predefinedAnswers[match];
-    speak(reply);
-    addToChat('bot', reply);
+    const reply = predefinedAnswers[match]; // Hent svaret fra listen
+    speak(reply);                           // Les svaret høyt
+    addToChat('bot', reply);                // Vis svaret i chatten
   } else {
-    // Forsøk Wikipedia
+    // Hvis vi ikke finner noe i listen, prøv å søke på Wikipedia
     fetch(`https://no.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(userInput)}`)
-      .then(res => res.json())
+      .then(res => res.json()) // Gjør om svaret fra Wikipedia til JSON
       .then(data => {
         if (data.extract) {
+          // Hvis vi fant tekst på Wikipedia
           speak(data.extract);
           addToChat('bot', data.extract);
         } else {
+          // Hvis vi ikke fant noe på Wikipedia
           const fallback = `Beklager, jeg fant ikke noe informasjon om "${userInput}". Søker på Google.`;
           speak(fallback);
           addToChat('bot', fallback);
@@ -137,6 +144,7 @@ function handleQuery(text) {
         }
       })
       .catch(err => {
+        // Hvis det skjer en feil (f.eks. internettproblem)
         const errorMsg = `Det oppstod en feil. Søker på Google etter: ${userInput}`;
         speak(errorMsg);
         addToChat('bot', errorMsg);
@@ -145,19 +153,26 @@ function handleQuery(text) {
   }
 }
 
+
 // === Lytt på tale ===
+
+// Når brukeren klikker på mikrofonknappen, start å lytte
 btn.addEventListener('click', () => {
   recognition.start();
 });
 
+// Når stemmen blir gjenkjent (brukeren har snakket ferdig)
 recognition.onresult = (event) => {
-  const transcript = event.results[0][0].transcript;
-  handleQuery(transcript);
+  const transcript = event.results[0][0].transcript; // Tar det som ble sagt
+  handleQuery(transcript);                           // Behandler det
 };
 
+
 // === Tekst-knapp ===
+
+// Når brukeren klikker på "søk"-knappen (tekst), kjør samme funksjon
 searchBtn.addEventListener('click', () => {
-  const input = inputField.value;
-  handleQuery(input);
-  inputField.value = '';
+  const input = inputField.value;     // Henter det brukeren skrev
+  handleQuery(input);                 // Behandler teksten
+  inputField.value = '';              // Tømmer tekstboksen
 });
